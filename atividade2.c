@@ -25,8 +25,8 @@
 #endif
 
 #define NUM_SENSORS 8
-#define NUM_BOXES 8
-#define MAP_LENGTH 10
+#define NUM_BOXES 9
+#define MAP_LENGTH 20
 
 static double weights[NUM_SENSORS][2] = {
   {-1.3,  -1.0}, 
@@ -93,13 +93,13 @@ double get_distance(double x1, double y1, double x2, double y2) {
 }
 
 bool map_from_world(int *m, double w) {
-  *m = (int)floor(10.0 * w) + 5;
+  *m = (int)floor(20.0 * w) + 10;
 
   return *m >= 0 && *m < MAP_LENGTH;
 } 
 
 bool world_from_map(double *w, int m) {
-  *w = (m - 5.0) / 10.0;  
+  *w = (m - 10.0) / 20.0;  
 
   return *w >= -0.5 && *w <= 0.5;
 }
@@ -334,7 +334,7 @@ void map_adjacency(int m[MAP_LENGTH][MAP_LENGTH],
 void print_map(int m[MAP_LENGTH][MAP_LENGTH]) {
   for (int i = 0; i < MAP_LENGTH; i += 1) {
     for (int j = 0; j < MAP_LENGTH; j += 1) {
-      printf("%3d", m[i][j]);
+      printf("%4d", m[i][j]);
     }
     printf("\n");
   }
